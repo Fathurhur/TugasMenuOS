@@ -1,6 +1,7 @@
 Tugas pengganti minggu 12 Sistem operasi IT 06-01.
 
 Nama: Muhammad Fathurrohman
+
 Nim: 1202230013
 
 Fitur yang saya ambil yaitu:
