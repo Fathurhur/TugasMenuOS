@@ -2,7 +2,7 @@
 
 # Warna
 hijau='\e[32m'
-kuning='\e[33m'
+kuning='\e[93m'
 biru='\e[34m'
 merah='\e[31m'
 ungu='\e[35m'
@@ -11,19 +11,19 @@ reset='\e[0m'
 while true; do
     clear
     echo -e "${merah}"
-    figlet -w 200 "KERAJAAN KING FATUR"
+    figlet -w 200 "KERAJAAN  KING  FATUR" | lolcat --animate
     echo -e "${reset}"
 
-    echo -e "${biru}=============================================="
-    echo -e "            SELAMAT DATANG "
-    echo -e "==============================================${reset}"
+    echo -e "$=============================================$=" | lolcat --animate
+    echo -e "               SELAMAT DATANG " | lolcat --animate
+    echo -e "$=============================================$=" | lolcat --animate
     echo -e "${kuning}1. Tampilkan Kehidupan Saat Ini${reset}"
     echo -e "${kuning}2. Informasi Jaringan${reset}"
     echo -e "${kuning}3. Tampilkan Detail OS${reset}"
     echo -e "${kuning}4. Tampilkan Waktu Install Pertama OS${reset}"
     echo -e "${kuning}5. Informasi User${reset}"
     echo -e "${merah}6. Keluar${reset}"
-    echo "=============================================="
+    echo "==============================================" | lolcat --animate
 
     read -p "Pilih opsi [1-6]: " pilihan
     clear
@@ -60,7 +60,13 @@ while true; do
             fi
 
             echo -e "\nStatus Koneksi LAN/WIFI:"
-            nmcli -t -f DEVICE,TYPE,STATE,CONNECTION dev status
+            if command -v nmcli >/dev/null 2>&1; then 
+	    	echo -e "DEVICE\tTYPE\tSTATE\tCONNECTION"
+		nmcli -t -f DEVICE,TYPE,STATE,CONNECTION dev status | column -t -s :
+	    else
+		echo -e "$(merah)nmcli tidak tersedia.
+		install dengan : sudo apt install network-manager${reset}"
+		fi
 
             echo -e "\nLokasi IP (via ipinfo.io):"
             if command -v curl &> /dev/null; then
